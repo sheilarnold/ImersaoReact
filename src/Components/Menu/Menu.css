@@ -51,10 +51,11 @@ body {
 @media (max-width: 800px) {
     .logo {
         max-width: 105px;
+        padding-top: 0.1em;
     }
 
     .menu {
-        height: 40px;
+        height: 55px;
         justify-content: center;
     }
 
