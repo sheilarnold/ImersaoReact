@@ -1,68 +1,88 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import PageDefault from '../../../Components/PageDefault';
+import FormField from '../../../Components/FormField';
 
 function CadastroCategoria() {
-    const [categorias, setCategorias] = useState(['teste']);
-    
     const valores = {
-        nome: 'Cat',
-        descricao: 'Cat Cat dogao',
-        cor: '#000',
+        nome: '',
+        descricao: '',
+        cor: '',
+    }
+    const [categorias, setCategorias] = useState([]);
+    const [values, setValues] = useState(valores);
+
+    function setValue(chave, valor) {
+        setValues({
+            ...values,
+            [chave]: valor,
+        })        
     }
 
-    let [values, setValues] = useState(valores);
+    function capturarMudancas(infoEvento){
+        setValue(
+            infoEvento.target.getAttribute('name'),
+            infoEvento.target.value
+        );
+    }
 
     return (
         <PageDefault>
         <h1>Cadastro de Categoria: {values.nome}</h1>
 
-        <form style={{background: values.cor}} onSubmit={function ahndleSubmit(infoEvento){
+        <form style={{background: values.cor}} onSubmit={function handleSubmit(infoEvento){
             infoEvento.preventDefault();
             setCategorias([
                 ...categorias,
                 values
             ]);
+            setValues({valores});
         }}>
-            <div>
-                <label>
-                Nome da Categoria:
-                <input
-                    type="text"
-                    value={values.nome}
-                    onChange={function cadCategoria(infoEvento){
-                            setValues(infoEvento.target.value)
-                        }
-                    }
-                />
-                </label>
-            </div>
-            <div>
+            <FormField
+                titulo="Nome da Categoria: "
+                type="text"
+                name="nome"
+                value={values.nome}
+                onChange={capturarMudancas}
+            />
+            
+            <FormField
+                titulo="Descricao: "
+                type="text"
+                name="descricao"
+                value={values.descricao}
+                onChange={capturarMudancas}
+            />
+
+            {/*<div>
                 <label>
                     Descrição:
                     <input
                         type="text"
+                        name="descricao"
                         value={values.descricao}
-                        onChange={function cadCategoria(infoEvento){
-                                setValues(infoEvento.target.value)
-                            }
-                        }
+                        onChange={capturarMudancas}
                     />
                 </label>
-            </div>
-            <div>
+            </div>*/}
+
+            <FormField
+                titulo="Cor: "
+                type="color"
+                name="cor"
+                value={values.cor}
+                onChange={capturarMudancas}
+            />
+            {/*<div>
                 <label>
                     Cor:
                     <input
                         type="color"
                         value={values.cor}
-                        onChange={function cadCategoria(infoEvento){
-                                setValues(infoEvento.target.value)
-                            }
-                        }
+                        onChange={capturarMudancas}
                     />
                 </label>
-            </div>
+            </div>*/}
             <button>
             Cadastrar
             </button>
@@ -72,7 +92,7 @@ function CadastroCategoria() {
             {categorias.map((categoria, indice) => {
                 return(
                     <li key={`${categoria}${indice}`}>
-                        {categoria}
+                        {categoria.nome}
                     </li>
                 )
             })}
