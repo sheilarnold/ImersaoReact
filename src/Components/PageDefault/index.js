@@ -18,7 +18,7 @@ function PageDefault({ children }) {
   return (
     <>
       <Menu />
-        <Main>
+        <Main style={{background: "linear-gradient(var(--red), #120000)"}}>
           {children}
         </Main>
       <Footer />

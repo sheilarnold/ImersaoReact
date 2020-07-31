@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import PageDefault from '../../../Components/PageDefault';
 import FormField from '../../../Components/FormField';
+import Button from '../../../Components/Button';
 
 function CadastroCategoria() {
     const valores = {
@@ -83,9 +84,9 @@ function CadastroCategoria() {
                     />
                 </label>
             </div>*/}
-            <button>
+            <Button style={{background: '#000000'}}>
             Cadastrar
-            </button>
+            </Button>
         </form>
 
         <ul>

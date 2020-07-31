@@ -7,7 +7,7 @@ import BannerMain from '../../Components/BannerMain';
 
 function Home() {
   return (
-    <div style={{background: "linear-gradient(red, black)"}}>
+    <div style={{background: "linear-gradient(var(--red), #120000)"}}>
       <Menu />
 
       <BannerMain
