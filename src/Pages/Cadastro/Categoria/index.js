@@ -31,7 +31,7 @@ function CadastroCategoria() {
         <PageDefault>
         <h1>Cadastro de Categoria: {values.nome}</h1>
 
-        <form style={{background: values.cor}} onSubmit={function handleSubmit(infoEvento){
+        <form onSubmit={function handleSubmit(infoEvento){
             infoEvento.preventDefault();
             setCategorias([
                 ...categorias,
@@ -49,7 +49,7 @@ function CadastroCategoria() {
             
             <FormField
                 titulo="Descricao: "
-                type="text"
+                type="textarea"
                 name="descricao"
                 value={values.descricao}
                 onChange={capturarMudancas}
@@ -92,7 +92,7 @@ function CadastroCategoria() {
         <ul>
             {categorias.map((categoria, indice) => {
                 return(
-                    <li key={`${categoria}${indice}`}>
+                    <li key={`${categoria.nome}${indice}`}>
                         {categoria.nome}
                     </li>
                 )
