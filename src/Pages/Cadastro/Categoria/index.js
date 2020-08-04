@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import PageDefault from '../../../Components/PageDefault';
 import FormField from '../../../Components/FormField';
@@ -26,6 +26,21 @@ function CadastroCategoria() {
             infoEvento.target.value
         );
     }
+
+    useEffect(() => {
+        if(window.location.href.includes('localhost')) {
+          const URL = 'http://localhost:8080/categorias'; 
+          fetch(URL)
+           .then(async (respostaDoServer) =>{
+            if(respostaDoServer.ok) {
+              const resposta = await respostaDoServer.json();
+              setCategorias(resposta);
+              return; 
+            }
+            throw new Error('Tivemos problemas técnicos ao acessar os dados referente à categorias :( Por favor, tente novamente mais tarde :)');
+           })
+        }    
+      }, []);
 
     return (
         <PageDefault>
