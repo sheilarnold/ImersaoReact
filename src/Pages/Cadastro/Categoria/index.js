@@ -29,7 +29,7 @@ function CadastroCategoria() {
 
     useEffect(() => {
         if(window.location.href.includes('localhost')) {
-          const URL = 'http://localhost:8080/categorias'; 
+          const URL = 'https://sheila-imersao-react.herokuapp.com/categorias'; 
           fetch(URL)
            .then(async (respostaDoServer) =>{
             if(respostaDoServer.ok) {
@@ -107,8 +107,8 @@ function CadastroCategoria() {
         <ul>
             {categorias.map((categoria, indice) => {
                 return(
-                    <li key={`${categoria.nome}${indice}`}>
-                        {categoria.nome}
+                    <li key={`${categoria}${indice}`}>
+                        {categoria.titulo}
                     </li>
                 )
             })}
